@@ -17,9 +17,9 @@ how to use my code:
 -> multiple architectures approaches to neural particle filtering are available in the nn/ directory:
     - generalist: 
         - State-Level (StateLevelPFCell, PFCfC, PFLTC)
-        - specialist: Parameter-Level (ParamLevelPFCell, PFCfC, PFLTC)
-        - dual: Dual-Level (DualLevelPFCell, PFCfC, PFLTC) (State + Parameter)
-        - sde: SDE-Level (SDELevelPFCell, PFCfC, PFLTC)
+        - Parameter-Level (ParamLevelPFCell, PFCfC, PFLTC)
+        - Dual-Level (DualLevelPFCell, PFCfC, PFLTC) (State + Parameter)
+        - SDE-Level (SDELevelPFCell, PFCfC, PFLTC)
     - specialist: 
         - Spatial PFNCP (SpatialPFNCP) -> maps latent beleif state to an interpretable probabilistic heatmap
 
@@ -37,7 +37,7 @@ thus, examples/RSSI is an example application of a particle filter liquid net fo
 given a sensory input, the system must estimate the a belief state of the signal source position..
 
 - input: [RSSI_front, RSSI_back, rotation, speed, sensor_heading]
-    - input if trigonometric_processing == true: [RSSI_front, RSSI_back, rotation, speed, sensor_heading_sin, sensor_heading_cos]
+    - input if trigonometric_processing == true: [RSSI_front, RSSI_back, rotation, speed, sensor_heading_sin, sensor_heading_cos] (to avoid 0 -> 1 sharp transition at the 180° angle)
 - primary output: [distance_norm, bearing_norm]
     - output if trigonometric_processing == true: [distance_norm, bearing_norm_sin, bearing_norm_cos]
 - secondary output: particles (probabilistic hypothesis about the target's relative position):

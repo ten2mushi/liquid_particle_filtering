@@ -1,0 +1,52 @@
+experiment:
+  name: pfncp_rssi
+  description: Particle Filter NCP for RSSI-based localization
+  run_id: null
+model:
+  input_size: 6
+  output_size: 3
+  units: 32
+  trigonometric_processing: true
+  n_particles: 8
+  approach: state
+  mode: default
+  noise_type: learned
+  noise_init: 0.1
+  alpha_mode: adaptive
+  alpha_init: 0.5
+  resample_threshold: 0.5
+  obs_model: heteroscedastic
+  obs_noise_std: 0.1
+  obs_min_noise: 0.01
+  obs_max_noise: 1.0
+  obs_hidden_sizes:
+  - 16
+  - 8
+  learnable_obs_noise: true
+  map_size: 64
+  sigma_min: 0.01
+  sigma_max: 0.5
+  projection_hidden: 16
+  egocentric: true
+training:
+  epochs: 30
+  batch_size: 16
+  learning_rate: 0.001
+  grad_clip: 1.0
+  device: auto
+  loss_type: huber
+  loss_beta: 0.1
+  use_circular_bearing: true
+  distance_weight: 1.0
+  bearing_weight: 1.0
+  use_heatmap_loss: true
+  heatmap_weight: 0.5
+  num_workers: 4
+  use_compile: true
+  ess_log_interval: 10
+visualization:
+  dpi: 150
+  n_animation_sequences: 5
+  animation_fps: 10
+  debug_viz: false
+  n_debug_episodes: 3
