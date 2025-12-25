@@ -29,7 +29,7 @@ currently playing around a system to track rf signal sources.
 setup:
     - a sensor with dual yagi antennas is mobile and can be controlled by a rl agent
     - rl agent must track signal source and navigate to it (goal is to reach tracked signal source)
-    - currently uses classical particle filter (monte carlo) to estimate signal source position and provide a belief state  prior its decision making step with the intent of providing it with more surface area to work with
+    - currently uses classical particle filter (monte carlo) to estimate signal source position and provide a belief state prior to its decision making step with the intent of providing it with more surface area to work with
     - came around this cool paper on particle filter recurrent networks: https://arxiv.org/abs/1905.12885
     - wanted to try to build a liquid particle filter because i love liquid nets (plz Ramin, hire me :P) they are awesome. everybody should have a liquid net as a pet companion.
 
