@@ -1,0 +1,79 @@
+# Model Configuration for RSSI Particle Filter Training
+# This file defines training hyperparameters, model architecture, and experiment settings.
+# Separate from dataset metadata (which describes the data universe).
+
+experiment:
+  name: "pfncp_rssi"
+  description: "Particle Filter NCP for RSSI-based localization"
+  # run_id will be auto-generated if not specified
+  run_id: null
+
+model:
+  # Core Architecture
+  input_size: 6       # [RSSI_front, RSSI_back, rotation, speed, sensor_heading]
+  output_size: 3      # [distance_norm, bearing_norm]
+  units: 32           # AutoNCP hidden units
+  # Trigonometric Processing (Sin/Cos encoding)
+  # If true: inputs=6 (sin/cos heading), outputs=3 (sin/cos bearing)
+  trigonometric_processing: true
+
+  # Particle Filter
+  n_particles: 8
+  approach: "state"   # state, param, dual, sde
+  
+  # CfC Cell Parameters
+  mode: "default"     # default, pure, no_gate
+  
+  # Noise Configuration
+  noise_type: "learned"
+  noise_init: 0.1
+  
+  # Soft Resampling
+  alpha_mode: "adaptive" # adaptive, fixed, learnable
+  alpha_init: 0.5
+  resample_threshold: 0.5
+  
+  # Observation Model
+  obs_model: "heteroscedastic" # gaussian, heteroscedastic, learned, energy, attention
+  obs_noise_std: 0.1
+  obs_min_noise: 0.01
+  obs_max_noise: 1.0
+  obs_hidden_sizes: [16, 8] # Only used if obs_model="learned" or "energy"
+  learnable_obs_noise: true
+
+  # Spatial Heatmap Generation
+  map_size: 64              # Heatmap resolution (H x W)
+  sigma_min: 0.01           # Minimum spatial uncertainty
+  sigma_max: 0.5            # Maximum spatial uncertainty
+  projection_hidden: 16     # Hidden size for projection MLP
+  egocentric: true          # Sensor-centered heatmaps (sensor at grid center)
+
+training:
+  epochs: 30
+  batch_size: 16
+  learning_rate: 0.001
+  grad_clip: 1.0
+  device: "auto"
+  
+  # Loss Configuration
+  loss_type: "huber" # mse, huber, weighted_mse, nll
+  loss_beta: 0.1
+  use_circular_bearing: true
+  distance_weight: 1.0
+  bearing_weight: 1.0
+
+  # Heatmap Loss Configuration
+  use_heatmap_loss: true    # Enable spatial heatmap supervision
+  heatmap_weight: 0.5       # Weight for heatmap NLL loss (vs point loss)
+
+  # Performance
+  num_workers: 4
+  use_compile: true
+  ess_log_interval: 10
+
+visualization:
+  dpi: 150
+  n_animation_sequences: 5
+  animation_fps: 10
+  debug_viz: false
+  n_debug_episodes: 3
