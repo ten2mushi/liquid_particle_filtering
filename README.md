@@ -15,12 +15,12 @@ how to use my code:
 - cd into the repo + poetry install
 
 -> multiple architectures approaches to neural particle filtering are available in the nn/ directory:
-    - generalist: 
+    - generalist:
         - State-Level (StateLevelPFCell, PFCfC, PFLTC)
         - Parameter-Level (ParamLevelPFCell, PFCfC, PFLTC)
         - Dual-Level (DualLevelPFCell, PFCfC, PFLTC) (State + Parameter)
         - SDE-Level (SDELevelPFCell, PFCfC, PFLTC)
-    - specialist: 
+    - specialist:
         - Spatial PFNCP (SpatialPFNCP) -> maps latent beleif state to an interpretable probabilistic heatmap
 
 why did i work on this?
@@ -43,7 +43,7 @@ given a sensory input, the system must estimate the a belief state of the signal
 - secondary output: particles (probabilistic hypothesis about the target's relative position):
 each particle is projected by the spatial head into interpretable spatial coordinates -> they vote for a specific location of the signal source (hypothesized position + spatial uncertainty + importance weight)
 
-dataset is generated using the RL env setup (not included here, but a built dataset is available in examples/RSSI/data/dpf_dataset_polar_double_single_target): antenna moedling with directional (dual yaggi with csv antenna patterns) and omnidirectional antenna patterns to simulate realistic signal directionality. Uses log-distance path loss models with fading to generate noisy RSSI observations (forcing the filter to learn noise rejection). Different trajectories are used at random for both sensor and target in any single episode.
+dataset is generated using the RL env setup (not included here, but a built dataset is available in examples/RSSI/data/dpf_dataset_polar_double_single_target): antenna moedling with directional (dual yaggi with csv antenna patterns) to simulate realistic signal directionality. Uses log-distance path loss models with fading to generate noisy RSSI observations (forcing the filter to learn noise rejection). Different trajectories are used at random for both sensor and target in any single episode.
 
 
 
