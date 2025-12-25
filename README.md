@@ -60,4 +60,6 @@ dataset is generated using the RL env setup (not included here, but a built data
 top left plot shows the belief state of the model regarding the target position,
 top middle plot shows the egocentric heatmap of the belief state -> could be processed by a cnn prior to rl agent.
 
-tl;dr: that was a cool rabbit hole to go down to
+model can easily be adapted for multi target signal tracking
+
+tl;dr: that was a cool rabbit hole to go down to, if you find it usefull don't hesitate to hire me :)
