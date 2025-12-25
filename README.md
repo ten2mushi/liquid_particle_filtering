@@ -57,7 +57,7 @@ dataset is generated using the RL env setup (not included here, but a built data
 
 ![Debug Episode 1](examples/RSSI/output/models/run_v3/models/run_v3/inference_output/debug_episode_1.gif)
 
-top left plot shows the beleif state of the model regarding the target position,
+top left plot shows the belief state of the model regarding the target position,
 top middle plot shows the egocentric heatmap of the belief state -> could be processed by a cnn prior to rl agent.
 
 tl;dr: that was a cool rabbit hole to go down to
