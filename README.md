@@ -50,7 +50,7 @@ dataset is generated using the RL env setup (not included here, but a built data
 - run the rssi example:
     - training:
         poetry run python examples/RSSI/train_rssi.py --config examples/RSSI/configs/default.yaml --run_id run_v4 --debug_viz --n_debug_episodes 2 --output_dir examples/RSSI/output/models/run_v4/
-    - inference (use existing checkpoints):
+    - inference (use existing checkpoints) (comment out the visualisation code):
         poetry run python examples/RSSI/inference_rssi.py --model_dir examples/RSSI/output/models/run_v3/models/run_v3 --n_episodes 2
 
 -> debug viz of the trained model:
