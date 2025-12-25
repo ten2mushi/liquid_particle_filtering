@@ -1,4 +1,4 @@
-liquid particle filters
+differentiable particle filtering
 
 based on:
 - particle filter recurrent networks: https://arxiv.org/abs/1905.12885 + https://github.com/Yusufma03/pfrnns
